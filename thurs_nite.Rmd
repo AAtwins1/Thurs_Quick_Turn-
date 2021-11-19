@@ -1,0 +1,55 @@
+---
+title: "Thurs_Inclass"
+author: "Adriana Pimentel"
+date: "11/18/2021"
+output: html_document
+---
+
+# This is a quick-turn challenge.  It relates to Question 2 of Quiz 8 in our course. Take a look at that quiz question and then.
+
+## The researchers wanted to know if the spiders could run faster, on average, without the hindrance of a pedipalp
+
+### Finish this writeUp and knit the result to a pdf file.  
+
+
+### Then add this to your github account and turn it in by emailing me the link to it in your github account,
+
+
+
+```{r, message=FALSE}
+require(tidyverse)
+require(tigerstats)
+require(abd)
+data("SpiderSpeed")
+```
+
+```{r, eval=TRUE}
+#mydata <- gather(SpiderSpeed, variable, value) 
+dat <- gather(SpiderSpeed, BorA, speed)
+```
+
+
+# Boxplot
+
+```{r}
+boxplot(speed~BorA,data=dat, main = "SpeedBorA")
+```
+  
+Here the boxplot indicates that the speed.after is higher than the speed before. Meaning, that the spiders run faster without their pedipals than with their pedipals.  
+
+# Numerical Results
+
+```{r}
+favstats(speed~BorA,data=dat)
+```
+  
+Here the mean for speed.after is higher that the mean for the speed.before. The mean for speed.after is 3.51 and the mean for speed.before is 2.90. Showing the difference between the speeds of spiders without their pedipals and with their pedipals.   
+  
+# Inferential Results
+```{r}
+t.test(speed~BorA,data=dat)
+```
+  
+The inferential results shows a p-value of 0.000461 which is a low value indicating that there is definitely a difference of speeds between the spiders with their pedipals and the spiders without their pedipals.   
+
+
